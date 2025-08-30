@@ -1,6 +1,6 @@
 {
   "name": "@stackpress/mcp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "Apache-2.0",
   "description": "Provides Stackpress context to AI utilities",
   "author": "Chris <chris@incept.asia>",
@@ -28,7 +28,7 @@
     "ingest": "dotenv -e .env -- ts-node src/scripts/ingest.ts",
     "serve": "dotenv -e .env -- ts-node src/scripts/serve.ts",
     "zip": "dotenv -e .env -- ts-node src/scripts/zip.ts",
-    "postinstall": "dotenv -e .env -- node dist/scripts/fetch.js"
+    "postinstall": "node dist/scripts/fetch.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.17.4",
