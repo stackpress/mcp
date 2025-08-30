@@ -1,11 +1,5 @@
 /**
- * Compress all .jsonl files in /indexes to .jsonl.gz, compute sizes + sha256,
- * and emit /release/index-manifest.json that matches the release version.
- *
- * USAGE:
- *   npx ts-node tools/zip-indexes.ts --version 0.3.1 --model text-embedding-3-small --dim 1536
- * or:
- *   npm run build-indexes
+ * Compress all .jsonl files in /indexes to .jsonl.gz, compute sizes + sha256
  */
 //node
 import fs from 'node:fs';
@@ -16,7 +10,7 @@ import crypto from 'node:crypto';
 import { Terminal } from '@stackpress/lib';
 //src
 import { model, build } from '../config';
-import { getPackageInfo } from '../helpers';
+import { getContextPack } from '../helpers';
 
 type FileRec = {
   // e.g., lib
@@ -81,12 +75,12 @@ async function main() {
     console.error(`No .jsonl files in ${build}. Nothing to package.`);
     process.exit(0);
   }
-  //get package info
-  const project = await getPackageInfo();
+  //get context pack info
+  const pack = getContextPack();
   //form the manifest
   const manifest = {
-    pack: project.name,
-    version: project.version,
+    pack: pack.name,
+    version: pack.version,
     created: new Date().toISOString(),
     requires: { 
       embedding_model: terminal.data.model || model, 

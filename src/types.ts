@@ -36,6 +36,8 @@ export type Include = {
 };
 
 export type Pack = { 
+  name: string,
+  version: string,
   order: string[],
   include: Include[],
   budgets: { 

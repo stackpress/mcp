@@ -9,10 +9,9 @@ import {
 import type { Query, Task } from './types';
 import { build } from './config';
 import Store from './store';
-import { embed, getPackageInfo, getContextPack } from './helpers';
+import { embed, getContextPack } from './helpers';
 
 export const pack = getContextPack();
-export const project = getPackageInfo();
 export const store = new Store(build);
 
 export const search_context = {
@@ -127,8 +126,8 @@ export const build_brief = {
 
 export default async function serve() {
   const server = new McpServer({
-    name: project.name,
-    version: project.version,
+    name: pack.name,
+    version: pack.version,
     tools: [ search_context, get_rule, dependency_graph, build_brief ]
   });
 

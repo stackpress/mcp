@@ -131,8 +131,8 @@ export function getContextPack() {
  * Retrieves the release URL for the current project.
  */
 export function getReleaseURL() {
-  const { version } = getPackageInfo();
-  return `${repo}/releases/download/${version || '0.0.1'}`;
+  const { version } = getContextPack();
+  return `${repo}/releases/download/${version}`;
 };
 
 /**
