@@ -1,7 +1,19 @@
 {
   "name": "@stackpress/mcp",
   "version": "0.0.1",
-  "private": true,
+  "license": "Apache-2.0",
+  "description": "Provides Stackpress context to AI utilities",
+  "author": "Chris <chris@incept.asia>",
+  "homepage": "https://github.com/stackpress/mcp",
+  "bugs": "https://github.com/stackpress/mcp/issues",
+  "repository": "stackpress/mcp",
+  "keywords": [
+    "ts",
+    "typescript",
+    "cjs",
+    "mcp",
+    "stackpress"
+  ],
   "files": [
     "bin.js",
     "dist",
