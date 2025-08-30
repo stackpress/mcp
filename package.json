@@ -1,0 +1,37 @@
+{
+  "name": "@stackpress/mcp",
+  "version": "0.0.1",
+  "private": true,
+  "files": [
+    "bin.js",
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "bin": "bin.js",
+  "scripts": {
+    "build": "tsc",
+    "fetch": "dotenv -e .env -- ts-node scripts/fetch.ts",
+    "verify": "dotenv -e .env -- ts-node scripts/verify.ts",
+    "ingest": "dotenv -e .env -- ts-node scripts/ingest.ts",
+    "serve": "dotenv -e .env -- ts-node scripts/serve.ts",
+    "zip": "dotenv -e .env -- ts-node scripts/zip.ts",
+    "postinstall": "dotenv -e .env -- npx . fetch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.17.4",
+    "gray-matter": "4.0.3",
+    "js-yaml": "4.1.0",
+    "remark-frontmatter": "5.0.0",
+    "remark-parse": "11.0.0",
+    "unified": "11.0.5"
+  },
+  "devDependencies": {
+    "@stackpress/lib": "0.6.2",
+    "@types/js-yaml": "4.0.9",
+    "@types/node": "24.3.0",
+    "dotenv-cli": "10.0.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.2"
+  }
+}

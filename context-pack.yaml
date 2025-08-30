@@ -1,0 +1,19 @@
+pack: "Stackpress Context Pack"
+version: 0.0.1
+order: [ lib, idea, ingest, inquire, reactus, stackpress ]
+include:
+  - repo: lib
+    paths: [ "docs/**/*.md" ]
+  - repo: idea
+    paths: [ "docs/**/*.md" ]
+  - repo: ingest
+    paths: [ "docs/**/*.md" ]
+  - repo: inquire
+    paths: [ "docs/**/*.md" ]
+  - repo: reactus
+    paths: [ "docs/**/*.md" ]
+#  - repo: stackpress
+#    paths: [ "docs/**/*.md" ]
+budgets:
+  max_chunk_tokens: 400
+  overlap_tokens: 32
