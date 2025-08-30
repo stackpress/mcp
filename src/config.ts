@@ -4,7 +4,7 @@ import path from 'node:path';
 //Used for building the context:
 
 //current working directory
-export const cwd = process.cwd();
+export const cwd = path.dirname(__dirname);
 //embedding model
 export const model = process.env.EMBEDDING_MODEL || 'text-embedding-3-small';
 //workspace where all the project repos are located
