@@ -47,7 +47,9 @@ export default class JsonlStore {
     logger = (_type: string, _message: string) => {}
   ) {
     //Fetch and parse the manifest JSON
-    const manifest = await (await fetch(getManifestURL())).json() as Manifest;
+    const manifestURL = getManifestURL();
+    logger('log', `Fetching manifest from ${manifestURL}…`);
+    const manifest = await (await fetch(manifestURL)).json() as Manifest;
     //Determine which files to fetch (all or filtered by indexNames)
     const selectedFiles = indexNames?.length
       ? manifest.files.filter(file => indexNames.includes(file.repo) 

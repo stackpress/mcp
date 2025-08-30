@@ -15,8 +15,8 @@ import crypto from 'node:crypto';
 //modules
 import { Terminal } from '@stackpress/lib';
 //src
-import { model, build } from '../src/config';
-import { getPackageInfo } from '../src/helpers';
+import { model, build } from '../config';
+import { getPackageInfo } from '../helpers';
 
 type FileRec = {
   // e.g., lib

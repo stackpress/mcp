@@ -1,5 +1,5 @@
 //src
-import Store from '../src/store';
+import Store from '../store';
 
 Store.verified((type, message) => {
   if (type === 'error') {

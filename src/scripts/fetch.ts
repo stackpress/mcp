@@ -1,4 +1,4 @@
-import Store from '../src/store';
+import Store from '../store';
 
 const names = process.argv.slice(2);
 
