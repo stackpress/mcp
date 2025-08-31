@@ -1,6 +1,6 @@
 {
   "name": "@stackpress/mcp",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "license": "Apache-2.0",
   "description": "Provides Stackpress context to AI utilities",
   "author": "Chris <chris@incept.asia>",
@@ -95,6 +95,7 @@
     }
   },
   "files": [
+    "bin.js",
     "cjs",
     "context-pack.yaml",
     "esm",
@@ -113,11 +114,11 @@
     "fetch": "node cjs/scripts/fetch.js",
     "verify": "node cjs/scripts/verify.js",
     "start": "node cjs/scripts/serve.js",
-    "dev": "dotenv -e .env -- ts-node src/scripts/serve.ts",
-    "dev:fetch": "dotenv -e .env -- ts-node src/scripts/fetch.ts",
-    "dev:verify": "dotenv -e .env -- ts-node src/scripts/verify.ts",
-    "ingest": "dotenv -e .env -- ts-node src/scripts/ingest.ts",
-    "zip": "dotenv -e .env -- ts-node src/scripts/zip.ts"
+    "dev": "dotenv -e .env -- ts-node -r tsx src/scripts/serve.ts",
+    "dev:fetch": "dotenv -e .env -- ts-node -r tsx src/scripts/fetch.ts",
+    "dev:verify": "dotenv -e .env -- ts-node -r tsx src/scripts/verify.ts",
+    "ingest": "dotenv -e .env -- ts-node -r tsx src/scripts/ingest.ts",
+    "zip": "dotenv -e .env -- ts-node -r tsx src/scripts/zip.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.17.4",
@@ -135,6 +136,7 @@
     "@types/node": "24.3.0",
     "dotenv-cli": "10.0.0",
     "ts-node": "10.9.2",
+    "tsx": "4.20.5",
     "typescript": "5.9.2"
   }
 }

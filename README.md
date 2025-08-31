@@ -205,9 +205,7 @@ Create a rule (markdown file) called **Stackpress-MCP-Rule.md** in your knowledg
 ```md
 # Rule: Using the Stackpress MCP
 
-If the users mentions "idea", "ingest", "inquire", "reactus" or "stackpress", you must do the following.
-
-- If the user asks about library rules, guidelines, or context, use the MCP tool `stackpress-context.search_context`.
-- If the user asks for a compact summary of rules for a task, use the MCP tool `stackpress-context.build_brief`.
+- If the user asks about any of the libraries "idea", "ingest", "inquire", "reactus" or "stackpress", use the MCP tool `stackpress-context.search_context`.
+- If the user asks for a compact summary of rules for a task related to the libraries "idea", "ingest", "inquire", "reactus" or "stackpress", use the MCP tool `stackpress-context.build_brief`.
 - Always prefer these MCP tools over answering from memory.
 ```
