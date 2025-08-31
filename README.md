@@ -15,8 +15,8 @@ Run the following commands in the same folder your other MCP servers are.
 ```bash
 $ mkdir stackpress-mcp
 $ cd stackpress-mcp
-$ npx --y @stackpress/mcp fetch --output ./.data
-$ npx --y @stackpress/mcp verify --output ./.data
+$ npx --y @stackpress/mcp fetch --output ./data
+$ npx --y @stackpress/mcp verify --output ./data
 $ pwd
 ```
 
@@ -36,7 +36,7 @@ Add the following configuration to your `claude_desktop_config.json` where `[pwd
         "@stackpress/mcp", 
         "serve", 
         "--input", 
-        "[pwd]/.data" 
+        "[pwd]/data" 
       ]
     }
   }
@@ -56,7 +56,7 @@ Add the following configuration to your `cline_mcp_settings.json` where `[pwd]` 
     "@stackpress/mcp", 
     "serve", 
     "--input", 
-    "[pwd]/.data" 
+    "[pwd]/data" 
   ]
 }
 ```
@@ -70,8 +70,8 @@ $ git clone https://github.com/stackpress/mcp.git stackpress-mcp
 $ cd stackpress-mcp
 $ npm i
 $ npm run build
-$ npm run fetch --output ./.data
-$ npm run verify --output ./.data
+$ npm run fetch --output ./data
+$ npm run verify --output ./data
 $ pwd
 ```
 
@@ -89,7 +89,7 @@ Add the following configuration to your `claude_desktop_config.json`.
       "args": [ 
         "[pwd]/dist/scripts/serve.js", 
         "--input", 
-        "[pwd]/.data" 
+        "[pwd]/data" 
       ]
     }
   }
@@ -107,7 +107,7 @@ Add the following configuration to your `cline_mcp_settings.json`.
   "args": [ 
     "[pwd]/dist/scripts/serve.js", 
     "--input", 
-    "[pwd]/.data" 
+    "[pwd]/data" 
   ]
 }
 ```
@@ -115,6 +115,12 @@ Add the following configuration to your `cline_mcp_settings.json`.
 ## 2. Usage
 
 You can manually start the server like the following.
+
+```bash
+$ npm start --input [pwd]/.data
+```
+
+Or you can run it manually like the following.
 
 ```bash
 $ node [pwd]/dist/scripts/serve.js --input [pwd]/.data
@@ -129,6 +135,13 @@ $ npx @stackpress/mcp serve --input [pwd]/.data
 ## 2.1. Fetching Updated Context
 
 You can manually fetch and verify the Stackpress context like the following.
+
+```bash
+$ npm run fetch --output [pwd]/.data
+$ npm run fetch --output [pwd]/.data
+```
+
+Or you can run it manually like the following.
 
 ```bash
 $ node [pwd]/dist/scripts/fetch.js --output [pwd]/.data
