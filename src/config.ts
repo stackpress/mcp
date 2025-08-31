@@ -5,6 +5,8 @@ import path from 'node:path';
 
 //current working directory
 export const cwd = process.cwd();
+//project working directory
+export const pwd = path.dirname(__dirname);
 //embedding model
 export const model = process.env.EMBEDDING_MODEL || 'local';
 //workspace where all the project repos are located

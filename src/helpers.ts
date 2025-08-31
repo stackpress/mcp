@@ -8,7 +8,7 @@ import stream from 'node:stream';
 import yaml from 'js-yaml';
 //src
 import type { Pack } from './types';
-import { cwd, host, repo, token, model } from './config';
+import { pwd, host, repo, token, model } from './config';
 
 /**
  * Generates embeddings for an array of input texts using a remote API.
@@ -120,7 +120,7 @@ export function gunzip(sourcePath: string, destinationPath: string) {
  * Retrieves information from the package.json file.
  */
 export function getPackageInfo(): any {
-  const packageJsonPath = path.join(cwd, 'package.json');
+  const packageJsonPath = path.join(pwd, 'package.json');
   if (!fs.existsSync(packageJsonPath)) {
     throw new Error(`Could not find package.json at ${packageJsonPath}`);
   }
@@ -131,7 +131,7 @@ export function getPackageInfo(): any {
  * Retrieves information from the context-pack.yaml file.
  */
 export function getContextPack() {
-  const contextPackPath = path.join(cwd, 'context-pack.yaml');
+  const contextPackPath = path.join(pwd, 'context-pack.yaml');
   if (!fs.existsSync(contextPackPath)) {
     throw new Error(`Could not find context-pack.yaml at ${contextPackPath}`);
   }
