@@ -126,7 +126,7 @@ export const build_brief = {
 
 export default async function serve() {
   const server = new McpServer({
-    name: pack.name,
+    name: pack.pack,
     version: pack.version,
     tools: [ search_context, get_rule, dependency_graph, build_brief ]
   });

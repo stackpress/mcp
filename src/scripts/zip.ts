@@ -79,7 +79,7 @@ async function main() {
   const pack = getContextPack();
   //form the manifest
   const manifest = {
-    pack: pack.name,
+    pack: pack.pack,
     version: pack.version,
     created: new Date().toISOString(),
     requires: { 
