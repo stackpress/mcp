@@ -138,7 +138,7 @@ You can manually fetch and verify the Stackpress context like the following.
 
 ```bash
 $ npm run fetch --output [pwd]/.data
-$ npm run fetch --output [pwd]/.data
+$ npm run verify --output [pwd]/.data
 ```
 
 Or you can run it manually like the following.
