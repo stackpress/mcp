@@ -14,6 +14,17 @@ import { cwd, host, repo, token, model, build } from './config';
  * Generates embeddings for an array of input texts using a remote API.
  */
 export async function embed(texts: string[]): Promise<number[][]> {
+  if (model === 'local') {
+    const { pipeline } = await import('@xenova/transformers');
+    const pipe = await pipeline(
+      'feature-extraction', 
+      'Xenova/all-MiniLM-L6-v2'
+    );
+    return Promise.all(texts.map(async t => {
+      const e = await pipe(t, { pooling: 'mean', normalize: true });
+      return Array.from(e.data);
+    }));
+  }
   //get embeddings (openrouter doesn't have an endpoint for this)
   const response = await fetch(`${host}/embeddings`, {
     method: 'POST',
