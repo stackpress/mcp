@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 //src
-import type { Manifest } from './types';
+import type { Manifest, Chunk } from './types.js';
 import { 
   sha256File, 
   download, 
@@ -10,8 +10,7 @@ import {
   synced,
   getReleaseURL, 
   getManifestURL 
-} from './helpers';
-import type { Chunk } from './types';
+} from './helpers.js';
 
 /**
  * Calculates the Euclidean norm (magnitude) of a vector.

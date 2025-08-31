@@ -7,15 +7,19 @@ import stream from 'node:stream';
 //modules
 import yaml from 'js-yaml';
 //src
-import type { Pack } from './types';
-import { pwd, host, repo, token, model } from './config';
+import type { Pack } from './types.js';
+import { pwd, host, repo, token, model } from './config.js';
 
 /**
  * Generates embeddings for an array of input texts using a remote API.
  */
 export async function embed(texts: string[]): Promise<number[][]> {
   if (model === 'local') {
-    const { pipeline } = await import('@xenova/transformers');
+    //This transpiles to require() in cjs...
+    //const { pipeline } = await import('@xenova/transformers');
+    const { pipeline } = await new Function(
+      "return import('@xenova/transformers')"
+    )();
     const pipe = await pipeline(
       'feature-extraction', 
       'Xenova/all-MiniLM-L6-v2'

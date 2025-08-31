@@ -134,19 +134,19 @@ Here is the project's README to help you get started:
 You can manually start the server like the following.
 
 ```bash
-$ npm start --input [pwd]/.data
+$ npm start --input [pwd]/data
 ```
 
 Or you can run it manually like the following.
 
 ```bash
-$ node [pwd]/dist/scripts/serve.js --input [pwd]/.data
+$ node [pwd]/dist/scripts/serve.js --input [pwd]/data
 ```
 
 If you installed via `npx`, you can start the server like the following.
 
 ```bash
-$ npx @stackpress/mcp serve --input [pwd]/.data
+$ npx @stackpress/mcp serve --input [pwd]/data
 ```
 
 ## 2.1. Fetching Updated Context
@@ -154,22 +154,22 @@ $ npx @stackpress/mcp serve --input [pwd]/.data
 You can manually fetch and verify the Stackpress context like the following.
 
 ```bash
-$ npm run fetch --output [pwd]/.data
-$ npm run verify --output [pwd]/.data
+$ npm run fetch --output [pwd]/data
+$ npm run verify --output [pwd]/data
 ```
 
 Or you can run it manually like the following.
 
 ```bash
-$ node [pwd]/dist/scripts/fetch.js --output [pwd]/.data
-$ node [pwd]/dist/scripts/verify.js --output [pwd]/.data
+$ node [pwd]/dist/scripts/fetch.js --output [pwd]/data
+$ node [pwd]/dist/scripts/verify.js --output [pwd]/data
 ```
 
 If you installed via `npx`, you can start the server like the following.
 
 ```bash
-$ npx @stackpress/mcp fetch --output [pwd]/.data
-$ npx @stackpress/mcp verify --output [pwd]/.data
+$ npx @stackpress/mcp fetch --output [pwd]/data
+$ npx @stackpress/mcp verify --output [pwd]/data
 ```
 
 ## 2.2. Upgrading Search Model
@@ -186,7 +186,7 @@ The MCP uses `Xenova/all-MiniLM-L6-v2` locally to determine the best search quer
     "@stackpress/mcp", 
     "serve", 
     "--input", 
-    "[pwd]/.data" 
+    "[pwd]/data" 
   ],
   "env": {
     "OPENAI_HOST": "https://api.openai.com/v1",
