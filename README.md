@@ -28,8 +28,26 @@ Add the following configuration to your `claude_desktop_config.json` where `[pwd
 
 ```json
 {
+  "name": "github.com/stackpress/mcp",
+  "command": "npx",
+  "args": [ 
+    "-y", 
+    "@stackpress/mcp", 
+    "serve", 
+    "--input", 
+    "[pwd]/data" 
+  ]
+}
+```
+
+#### 1.1.2 Using NPX With Cline
+
+Add the following configuration to your `cline_mcp_settings.json` where `[pwd]` is the response from the `pwd` command earlier.
+
+```json
+{
   "mcpServers": {
-    "stackpress-context": {
+    "github.com/stackpress/mcp": {
       "command": "npx",
       "args": [ 
         "-y", 
@@ -40,24 +58,6 @@ Add the following configuration to your `claude_desktop_config.json` where `[pwd
       ]
     }
   }
-}
-```
-
-#### 1.1.2 Using NPX With Cline
-
-Add the following configuration to your `cline_mcp_settings.json` where `[pwd]` is the response from the `pwd` command earlier.
-
-```json
-{
-  "name": "stackpress-context",
-  "command": "npx",
-  "args": [ 
-    "-y", 
-    "@stackpress/mcp", 
-    "serve", 
-    "--input", 
-    "[pwd]/data" 
-  ]
 }
 ```
 
@@ -83,16 +83,13 @@ Add the following configuration to your `claude_desktop_config.json`.
 
 ```json
 {
-  "mcpServers": {
-    "stackpress-context": {
-      "command": "node",
-      "args": [ 
-        "[pwd]/dist/scripts/serve.js", 
-        "--input", 
-        "[pwd]/data" 
-      ]
-    }
-  }
+  "name": "github.com/stackpress/mcp",
+  "command": "node",
+  "args": [ 
+    "[pwd]/dist/scripts/serve.js", 
+    "--input", 
+    "[pwd]/data" 
+  ]
 }
 ```
 
@@ -102,13 +99,16 @@ Add the following configuration to your `cline_mcp_settings.json`.
 
 ```json
 {
-  "name": "stackpress-context",
-  "command": "node",
-  "args": [ 
-    "[pwd]/dist/scripts/serve.js", 
-    "--input", 
-    "[pwd]/data" 
-  ]
+  "mcpServers": {
+    "github.com/stackpress/mcp": {
+      "command": "node",
+      "args": [ 
+        "[pwd]/dist/scripts/serve.js", 
+        "--input", 
+        "[pwd]/data" 
+      ]
+    }
+  }
 }
 ```
 
@@ -178,7 +178,7 @@ The MCP uses `Xenova/all-MiniLM-L6-v2` locally to determine the best search quer
 
 ```json
 {
-  "name": "stackpress-context",
+  "name": "github.com/stackpress/mcp",
   "command": "node",
   "command": "npx",
   "args": [ 
