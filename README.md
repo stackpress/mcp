@@ -112,6 +112,23 @@ Add the following configuration to your `cline_mcp_settings.json`.
 }
 ```
 
+### 1.3. From Prompt
+
+ 1. Copy and paste the following prompt.
+
+```
+Set up the MCP server from https://github.com/stackpress/mcp while adhering to these MCP server installation rules:
+- Start by loading the MCP documentation.
+- Use "github.com/stackpress/mcp" as the server name in cline_mcp_settings.json.
+- Create the directory for the new MCP server before starting installation.
+- Make sure you read the user's existing cline_mcp_settings.json file before editing it with this new mcp, to not overwrite any existing servers.
+- Use commands aligned with the user's shell and operating system best practices.
+- Once installed, demonstrate the server's capabilities by using one of its tools.
+Here is the project's README to help you get started:
+```
+
+ 2. Then paste in this README.
+
 ## 2. Usage
 
 You can manually start the server like the following.
@@ -180,3 +197,17 @@ The MCP uses `Xenova/all-MiniLM-L6-v2` locally to determine the best search quer
 ```
 
 > WARNING: OpenRouter doesn't support the `/embeddings` API endpoint. This is called when providing an OpenAI compatible host.
+
+## 3. Maximizing Your Knowledge Base
+
+Create a rule (markdown file) called **Stackpress-MCP-Rule.md** in your knowledge folder (ex. `.clinerules`) with the following context.
+
+```md
+# Rule: Using the Stackpress MCP
+
+If the users mentions "idea", "ingest", "inquire", "reactus" or "stackpress", you must do the following.
+
+- If the user asks about library rules, guidelines, or context, use the MCP tool `stackpress-context.search_context`.
+- If the user asks for a compact summary of rules for a task, use the MCP tool `stackpress-context.build_brief`.
+- Always prefer these MCP tools over answering from memory.
+```
