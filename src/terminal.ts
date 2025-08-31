@@ -15,12 +15,17 @@ import { getContextPack } from './helpers.js';
  */
 export default function terminal(argv = process.argv) {
   const terminal = new Terminal(argv, '[spmcp]');
+  const verbose = terminal.expect<boolean>(['v', 'verbose'], false);
   const logger = async (type: string, message: string) => {
     terminal.resolve('log', { type, message });
   };
 
   terminal.on('log', req => {
     const type = req.data.path('type', 'log');
+    const ignore = [ 'log', 'info', 'system' ];
+    if (!verbose && ignore.includes(type)) {
+      return;
+    }
     const message = req.data.path('message', '');
     if (!message) return;
     if (type === 'error') {
