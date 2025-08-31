@@ -4,20 +4,80 @@ Experimental MCP server implementation to provide Stackpress context to AI utili
 
 ## 1. Install
 
-> Make sure you are using Node version 22
+The following sections describe several ways to install this MCP.
+
+> Make sure you are using Node version 22.
+
+### 1.1. Option 1: Using NPX
+
+Run the following commands in the same folder your other MCP servers are.
+
+```bash
+$ mkdir stackpress-mcp
+$ cd stackpress-mcp
+$ npx --y @stackpress/mcp fetch --output ./.data
+$ npx --y @stackpress/mcp verify --output ./.data
+$ pwd
+```
+
+Copy the response from `pwd` and edit your MCP server configuration by following one of the options below.
+
+#### 1.1.1 Using NPX With Claude Desktop
+
+Add the following configuration to your `claude_desktop_config.json` where `[pwd]` is the response from the `pwd` command earlier.
+
+```json
+{
+  "mcpServers": {
+    "stackpress-context": {
+      "command": "npx",
+      "args": [ 
+        "-y", 
+        "@stackpress/mcp", 
+        "serve", 
+        "--input", 
+        "[pwd]/.data" 
+      ]
+    }
+  }
+}
+```
+
+#### 1.1.2 Using NPX With Cline
+
+Add the following configuration to your `cline_mcp_settings.json` where `[pwd]` is the response from the `pwd` command earlier.
+
+```json
+{
+  "name": "stackpress-context",
+  "command": "npx",
+  "args": [ 
+    "-y", 
+    "@stackpress/mcp", 
+    "serve", 
+    "--input", 
+    "[pwd]/.data" 
+  ]
+}
+```
+
+### 1.2. Option 2: Direct From the Repository
+
+Run the following commands in the same folder your other MCP servers are.
 
 ```bash
 $ git clone https://github.com/stackpress/mcp.git stackpress-mcp
 $ cd stackpress-mcp
 $ npm i
 $ npm run build
-$ npm run fetch
+$ npm run fetch --output ./.data
+$ npm run verify --output ./.data
 $ pwd
 ```
 
-Copy the response from `pwd` for the next sections.
+Copy the response from `pwd` and edit your MCP server configuration by following one of the options below.
 
-### 1.1. With Claude Desktop
+#### 1.2.1. From the Repository With Claude Desktop
 
 Add the following configuration to your `claude_desktop_config.json`.
 
@@ -26,13 +86,17 @@ Add the following configuration to your `claude_desktop_config.json`.
   "mcpServers": {
     "stackpress-context": {
       "command": "node",
-      "args": [ "[pwd]/dist/scripts/serve.js" ]
+      "args": [ 
+        "[pwd]/dist/scripts/serve.js", 
+        "--input", 
+        "[pwd]/.data" 
+      ]
     }
   }
 }
 ```
 
-### 1.2. With Cline
+#### 1.2.2. From the Repository With Cline
 
 Add the following configuration to your `cline_mcp_settings.json`.
 
@@ -40,7 +104,11 @@ Add the following configuration to your `cline_mcp_settings.json`.
 {
   "name": "stackpress-context",
   "command": "node",
-  "args": [ "[pwd]/dist/scripts/serve.js" ]
+  "args": [ 
+    "[pwd]/dist/scripts/serve.js", 
+    "--input", 
+    "[pwd]/.data" 
+  ]
 }
 ```
 
@@ -49,13 +117,13 @@ Add the following configuration to your `cline_mcp_settings.json`.
 You can manually start the server like the following.
 
 ```bash
-$ node [pwd]/dist/scripts/serve.js
+$ node [pwd]/dist/scripts/serve.js --input [pwd]/.data
 ```
 
-You can also start the server with `npx` like the following.
+If you installed via `npx`, you can start the server like the following.
 
 ```bash
-$ npx . serve
+$ npx @stackpress/mcp serve --input [pwd]/.data
 ```
 
 ## 2.1. Fetching Updated Context
@@ -63,15 +131,15 @@ $ npx . serve
 You can manually fetch and verify the Stackpress context like the following.
 
 ```bash
-$ node [pwd]/dist/scripts/fetch.js
-$ node [pwd]/dist/scripts/verify.js
+$ node [pwd]/dist/scripts/fetch.js --output [pwd]/.data
+$ node [pwd]/dist/scripts/verify.js --output [pwd]/.data
 ```
 
-You can also fetch the context with `npx` like the following.
+If you installed via `npx`, you can start the server like the following.
 
 ```bash
-$ npx . fetch
-$ npx . verify
+$ npx @stackpress/mcp fetch --output [pwd]/.data
+$ npx @stackpress/mcp verify --output [pwd]/.data
 ```
 
 ## 2.2. Upgrading Search Model
@@ -82,7 +150,14 @@ The MCP uses `Xenova/all-MiniLM-L6-v2` locally to determine the best search quer
 {
   "name": "stackpress-context",
   "command": "node",
-  "args": [ "[pwd]/dist/scripts/serve.js" ],
+  "command": "npx",
+  "args": [ 
+    "-y", 
+    "@stackpress/mcp", 
+    "serve", 
+    "--input", 
+    "[pwd]/.data" 
+  ],
   "env": {
     "OPENAI_HOST": "https://api.openai.com/v1",
     "OPENAI_KEY": "sk-xxx",

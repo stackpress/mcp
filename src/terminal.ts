@@ -1,6 +1,9 @@
+//node
+import path from 'node:path';
 //modules
 import { Terminal } from '@stackpress/lib';
 //src
+import { cwd, build } from './config';
 import Store from './store';
 import server from './server';
 import { getContextPack } from './helpers';
@@ -31,29 +34,48 @@ export default function terminal(argv = process.argv) {
 
   terminal.on('fetch', async req => {
     const pack = getContextPack();
+    //ex. --output /some/path
+    //ex. --output .
+    let output = req.data.path('output', build);
+    if (output.startsWith('.')) {
+      output = path.resolve(cwd, output);
+    }
     const names = pack.include
       //just get the repo names
       .map(item => item.repo)
       //flatten to string[]
       .flat()
       //only include names that are requested
+      //ex. --lib --ingest --inquire --reactus --stackpress
       .filter(name => req.data(name));
     // Fetch the latest data
-    await Store.fetch(names, logger);
+    await Store.fetch(output, names, logger);
   });
 
-  terminal.on('verify', async () => {
+  terminal.on('verify', async req => {
+    //ex. --output /some/path
+    //ex. --output .
+    let output = req.data.path('output', build);
+    if (output.startsWith('.')) {
+      output = path.resolve(cwd, output);
+    }
     // Fetch the latest data
-    await Store.verified(logger);
+    await Store.verified(output, logger);
   });
 
-  terminal.on('serve', async () => {
+  terminal.on('serve', async req => {
+    //ex. --input /some/path
+    //ex. --input .
+    let input = req.data.path('input', build);
+    if (input.startsWith('.')) {
+      input = path.resolve(cwd, input);
+    }
     // Start the MCP server
     await terminal.resolve('log', { 
       type: 'success', 
       message: 'MCP server started!' 
     });
-    await server();
+    await server(input);
   });
 
   return terminal;

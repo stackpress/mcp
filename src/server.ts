@@ -4,12 +4,10 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 
 // src
-import { build } from './config';
 import Store from './store';
 import { embed, getContextPack } from './helpers';
 
 export const pack = getContextPack();
-export const store = new Store(build);
 
 //-------------------------------------------------------------------//
 // Zod shapes (ZodRawShape)
@@ -39,7 +37,7 @@ const buildBriefShape = {
 //--------------------------------------------------------------------//
 // Server Features
 
-export function registerSearchContext(server: McpServer) {
+export function registerSearchContext(server: McpServer, store: Store) {
   server.registerTool(
     'search_context',
     {
@@ -57,7 +55,7 @@ export function registerSearchContext(server: McpServer) {
   );
 };
 
-export function registerGetRule(server: McpServer) {
+export function registerGetRule(server: McpServer, store: Store) {
   server.registerTool(
     'get_rule',
     {
@@ -90,7 +88,7 @@ export function registerDependencyGraph(server: McpServer) {
   );
 };
 
-export function registerBuildBrief(server: McpServer) {
+export function registerBuildBrief(server: McpServer, store: Store) {
   server.registerTool(
     'build_brief',
     {
@@ -138,16 +136,18 @@ export function registerBuildBrief(server: McpServer) {
 //--------------------------------------------------------------------//
 // Main Function
 
-export default async function serve() {
+export default async function serve(input: string) {
+
+  const store = new Store(input);
   const server = new McpServer({
     name: pack.pack,     // ensure these are strings
     version: pack.version,
   });
 
-  registerSearchContext(server);
-  registerGetRule(server);
+  registerSearchContext(server, store);
+  registerGetRule(server, store);
   registerDependencyGraph(server);
-  registerBuildBrief(server);
+  registerBuildBrief(server, store);
 
   const transport = new StdioServerTransport();
   await server.connect(transport);

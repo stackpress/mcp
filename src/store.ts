@@ -3,7 +3,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 //src
 import type { Manifest } from './types';
-import { build } from './config';
 import { 
   sha256File, 
   download, 
@@ -43,6 +42,7 @@ export default class JsonlStore {
    * and unzips them. Optionally filters by provided index names.
    */
   public static async fetch(
+    build: string,
     indexNames?: string[], 
     logger = (_type: string, _message: string) => {}
   ) {
@@ -91,10 +91,11 @@ export default class JsonlStore {
    * checksums.
    */
   public static async verified(
+    build: string,
     logger = (_type: string, _message: string) => {}
   ) {
     //check if any jsonl files exist
-    if (!synced()) {
+    if (!synced(build)) {
       logger('error', 'No .jsonl files found');
       return false;
     }

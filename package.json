@@ -1,6 +1,6 @@
 {
   "name": "@stackpress/mcp",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "license": "Apache-2.0",
   "description": "Provides Stackpress context to AI utilities",
   "author": "Chris <chris@incept.asia>",
@@ -16,7 +16,7 @@
   ],
   "files": [
     "bin.js",
-    "context-pack.yml",
+    "context-pack.yaml",
     "dist",
     "LICENSE",
     "README.md"
@@ -28,6 +28,8 @@
     "verify": "node dist/scripts/verify.js",
     "start": "node dist/scripts/serve.js",
     "dev": "dotenv -e .env -- ts-node src/scripts/serve.ts",
+    "dev:fetch": "dotenv -e .env -- ts-node src/scripts/fetch.ts",
+    "dev:verify": "dotenv -e .env -- ts-node src/scripts/verify.ts",
     "ingest": "dotenv -e .env -- ts-node src/scripts/ingest.ts",
     "zip": "dotenv -e .env -- ts-node src/scripts/zip.ts"
   },

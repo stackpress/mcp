@@ -8,7 +8,7 @@ import stream from 'node:stream';
 import yaml from 'js-yaml';
 //src
 import type { Pack } from './types';
-import { cwd, host, repo, token, model, build } from './config';
+import { cwd, host, repo, token, model } from './config';
 
 /**
  * Generates embeddings for an array of input texts using a remote API.
@@ -156,7 +156,7 @@ export function getManifestURL() {
 /**
  * Checks if the build directory contains any JSONL files.
  */
-export function synced() {
+export function synced(build: string) {
   try { 
     return fs.readdirSync(build).some(file => file.endsWith('.jsonl')); 
   } catch { 

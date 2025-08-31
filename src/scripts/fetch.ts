@@ -1,17 +1,11 @@
-import Store from '../store';
+import terminal from '../terminal';
 
-const names = process.argv.slice(2);
+const argv = [
+  'fetch',
+  ...process.argv.slice(2)
+];
 
-Store.fetch(
-  names.length ? names : undefined,
-  (type, message) => {
-    if (type === 'error') {
-      console.error(message);
-      return;
-    }
-    console.log(message);
-  }
-).catch(e => {
-  console.error(e);
+terminal(argv).run().catch(err => {
+  console.error(err);
   process.exit(1);
 });

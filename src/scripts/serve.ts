@@ -1,6 +1,11 @@
-import server from '../server';
+import terminal from '../terminal';
 
-server().catch(err => {
+const argv = [
+  'serve',
+  ...process.argv.slice(2)
+];
+
+terminal(argv).run().catch(err => {
   console.error(err);
   process.exit(1);
 });
