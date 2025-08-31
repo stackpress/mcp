@@ -17,7 +17,7 @@ export default function terminal(argv = process.argv) {
   const terminal = new Terminal(argv, '[spmcp]');
   const verbose = terminal.expect<boolean>(['v', 'verbose'], false);
   const logger = async (type: string, message: string) => {
-    terminal.resolve('log', { type, message });
+    await terminal.resolve('log', { type, message });
   };
 
   terminal.on('log', req => {
@@ -77,12 +77,21 @@ export default function terminal(argv = process.argv) {
     if (input.startsWith('.')) {
       input = path.resolve(cwd, input);
     }
-    // Start the MCP server
-    await terminal.resolve('log', { 
-      type: 'success', 
-      message: 'MCP server started!' 
-    });
-    await server(input);
+    
+    try {
+      // Start the MCP server
+      await terminal.resolve('log', { 
+        type: 'success', 
+        message: 'Starting MCP server...' 
+      });
+      await server(input, terminal);
+    } catch (error) {
+      await terminal.resolve('log', { 
+        type: 'error', 
+        message: `Failed to start MCP server: ${(error as Error).message}` 
+      });
+      throw error;
+    }
   });
 
   return terminal;
