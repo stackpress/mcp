@@ -1,17 +1,3 @@
-//Types for serving:
-
-export type Query = {
-  query: string,
-  repo: string,
-  must_only: boolean,
-  k?: number
-};
-
-export type Task = {
-  task: string,
-  repos: string[]
-};
-
 //Types for building:
 
 export type RawChunk = {
