@@ -58,7 +58,7 @@ You can also start the server with `npx` like the following.
 $ npx . serve
 ```
 
-## 3. Fetching Updated Context
+## 2.1. Fetching Updated Context
 
 You can manually fetch and verify the Stackpress context like the following.
 
@@ -73,3 +73,22 @@ You can also fetch the context with `npx` like the following.
 $ npx . fetch
 $ npx . verify
 ```
+
+## 2.2. Upgrading Search Model
+
+The MCP uses `Xenova/all-MiniLM-L6-v2` locally to determine the best search query term for the MCP. Think about it like random prompt → correct query → ask MCP. You can upgrade this to use your OpenAI key by adding `OPENAI_HOST`, `OPENAI_KEY` and `EMBEDDING_MODEL` environment variables in your MCP settings like the following.
+
+```json
+{
+  "name": "stackpress-context",
+  "command": "node",
+  "args": [ "[pwd]/dist/scripts/serve.js" ],
+  "env": {
+    "OPENAI_HOST": "https://api.openai.com/v1",
+    "OPENAI_KEY": "sk-xxx",
+    "EMBEDDING_MODEL": "text-embedding-3-small"
+  }
+}
+```
+
+> WARNING: OpenRouter doesn't support the `/embeddings` API endpoint. This is called when providing an OpenAI compatible host.
